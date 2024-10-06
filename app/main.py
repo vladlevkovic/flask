@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def welcome():
-    return "Привіт! Це другий урок по фреймовку Flask"
+    return render_template('base.html')
 
 @app.route("/users/<int:user_id>")
 def get_username(user_id):
@@ -34,6 +34,34 @@ def user_register():
 @app.route("/redirect")
 def redirect_route():
     return redirect('https://www.google.com/')
+
+
+@app.route("/data")
+def user_data():
+    users_list = [
+        {
+            'username': 'user1'
+        },
+        {
+            'username': 'user2'
+        },
+        {
+            'username': 'user3'
+        }
+    ]
+    user_is_admin = True
+    return render_template('data.html', users=users_list, admin=user_is_admin)
+
+
+@app.route("/links")
+def all_links():
+    links = [
+        'https://google.come',
+        'https://facebook.com',
+        'https://instagram.com',
+        'https://mc.com'
+    ]
+    return render_template('links.html', links=links)
 
 if __name__ == '__main__':
     app.run(debug=True)
