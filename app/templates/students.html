@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for student in students|sort(attribute='name') %}
+{{macros.add_badge(student, students)}}
+<li>
+    {{ student.name }}: {{ student.score }}
+</li>
+{% endfor %}
+<!--<p>{{ text|slice(0, 50) }}</p>-->
+{% endblock %}
