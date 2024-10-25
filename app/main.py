@@ -1,5 +1,6 @@
 from flask import Flask, request, send_file, render_template, redirect
 from db import get_all_students, add_student
+from db_connect import create_db
 
 app = Flask(__name__)
 
@@ -107,4 +108,5 @@ def join():
     return render_template('join.html')
 
 if __name__ == '__main__':
+    create_db()
     app.run(debug=True)
