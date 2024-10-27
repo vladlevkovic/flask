@@ -1,5 +1,7 @@
 from flask import Flask, request, send_file, render_template, redirect
 from db import get_all_students, add_student
+from models import Group, Student
+from db_connect import session
 from db_connect import create_db
 
 app = Flask(__name__)
@@ -106,6 +108,27 @@ def join():
         age = request.form['age']
         add_student(first_name, last_name, age)
     return render_template('join.html')
+
+
+@app.route('/groups', methods=['GET', 'POST'])
+def management_group():
+    with session() as db:
+        if request.method == 'POST':
+            name = request.form.get('name')
+            if name:
+                new_group = Group(
+                    name=name
+                )
+                db.add(new_group)
+                db.commit()
+        return render_template('group/management.html')
+
+
+@app.route('/groups-list', methods=['GET'])
+def groups_list():
+    with session() as db:
+        groups = db.query(Group).all()
+        return render_template('group/groups.html', groups=groups)
 
 if __name__ == '__main__':
     create_db()
