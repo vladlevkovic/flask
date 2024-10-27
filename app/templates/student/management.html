@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post">
+    <p>
+        <label for="name">Name</label>
+        <input name="name" type="text">
+    </p>
+    <p>
+        <label for="last_name">Surname</label>
+        <input name="last_name" type="text">
+    </p>
+    <p>
+        <label for="groups">Groups</label>
+        <select name="groups" multiple>
+            {% for group in groups %}
+            <option value="{{ group.id }}" {% if group.selected %} {% else %}selected{% endif %}>{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p><button type="submit">Add</button></p>
+</form>
+{% endblock %}

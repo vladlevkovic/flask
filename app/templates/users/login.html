@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if error %}
+<h1>{{ error }}</h1>
+{% endif %}
+<form method="post">
+  <p>
+    <label>Email</label>
+    <input name="email" type="text">
+  </p>
+  <p>
+    <label>Name</label>
+    <input name="name" type="text" required>
+  </p>
+  <p>
+    <label>Last name</label>
+    <input name="last_name" type="text" required>
+  </p>
+  <p>
+    <label>Password</label>
+    <input name="password" type="password" required>
+  </p>
+  <p>
+    <label>Check password</label>
+    <input name="check_password" type="password" required>
+  </p>
+  <p>
+    <button type="submit">Register</button>
+  </p>
+</form>
+{% endblock %}

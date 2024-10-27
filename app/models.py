@@ -72,3 +72,13 @@ class Lesson(Base):
 
     title: Mapped[str] = mapped_column(String(50))
     groups: Mapped[List[Group]] = relationship(secondary=lesson_group_assoc_table)
+
+
+class User(Base):
+    __tablename__ = 'users'
+
+    email: Mapped[str] = mapped_column(unique=True, index=True)
+    name: Mapped[str] = mapped_column(String(50))
+    password: Mapped[str]
+    last_name: Mapped[str] = mapped_column(String(50))
+    created: Mapped[datetime] = mapped_column(server_default=func.now())

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for student in students %}
+<p>{{ student.name }} {{ student.last_name }}</p>
+{% endfor %}
+{% endblock %}
